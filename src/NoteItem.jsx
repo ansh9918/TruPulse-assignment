@@ -4,7 +4,7 @@ import { useNetworkStatus, useSync } from "./hooks";
 
 const SavedNoteItem = ({ note, onClick }) => {
     const isOnline = useNetworkStatus();
-    const { deleteNote, getOfflineUpdates } = useSync();
+    const { deleteNote } = useSync();
 
     const deleteNoteEverywhere = async (id) => {
         // Step 1: Delete from IndexedDB
@@ -19,7 +19,6 @@ const SavedNoteItem = ({ note, onClick }) => {
                         method: "DELETE",
                     }
                 );
-                await getOfflineUpdates();
             } catch (error) {
                 console.error(
                     `Failed to delete note ${id} from MockAPI`,

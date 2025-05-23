@@ -24,6 +24,11 @@ function App() {
         clearOnlySyncedNotes,
     } = useSync();
 
+    useEffect(() => {
+        // Load notes from IndexedDB on mount
+        getOfflineUpdates();
+    }, []);
+
     const saveNote = async (note) => {
         setSyncInProgress(true);
         console.log(note);
